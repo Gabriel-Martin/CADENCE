@@ -23,12 +23,21 @@
             <!-- TOP ALBUMS -->
             <v-flex>
                 <v-card>
-                    <v-card-title class="title">Top Albums</v-card-title>
-                    <v-container grid-list-md>
-                        <v-layout row wrap justify-center>
-                            <album-card v-for="({id}, index) in artist.topAlbums" :key="index" v-bind="{ albumId: id }" />
-                        </v-layout>
-                    </v-container>
+                    <v-card-title primary-title>
+                        <div class="title">Top Albums</div>
+                    </v-card-title>
+                    <v-expansion-panel popout>
+                        <v-expansion-panel-content ripple v-for="({ id, name }, index) in artist.topAlbums" :key="id">
+                            <div slot="header">
+                                <img src="" alt="">
+                            </div>
+                            <v-card light>
+                                <v-card-text>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </v-card-text>
+                            </v-card>
+                        </v-expansion-panel-content>
+                    </v-expansion-panel>
                 </v-card>
             </v-flex>
             <!-- TOP TRACKS -->
@@ -36,14 +45,14 @@
                 <v-card>
                     <v-card-title class="title">Top Tracks</v-card-title>
                     <v-list two-line>
-                        <template v-for="({name, albumName}, index) in artist.topTracks">
-                            <v-list-tile :key="index">
+                        <template v-for="({id, name, albumName}) in artist.topTracks">
+                            <v-list-tile :key="id">
                                 <v-list-tile-content>
                                     <v-list-tile-title> {{ name }}</v-list-tile-title>
                                     <v-list-tile-sub-title>Album - {{ albumName }}</v-list-tile-sub-title>
                                 </v-list-tile-content>
-                                </v-list-til>
-                                <v-divider dark :key="albumName"></v-divider>
+                            </v-list-tile>
+                            <v-divider dark :key="name"></v-divider>
                         </template>
                     </v-list>
                 </v-card>
@@ -53,32 +62,32 @@
 </template>
 
 <script>
-import { AlbumCard } from "../components";
+    import { AlbumCard } from "../components";
 
-export default {
-  data() {
-    return {
-      artist: {},
-      loading: true
+    export default {
+      data() {
+        return {
+          artist: {},
+          loading: true
+        };
+      },
+      props: ["artistId", "image"],
+      components: { AlbumCard },
+      async created() {
+        const { getArtistDetails } = this.$artistQuery;
+
+        try {
+          const { data: artist } = await getArtistDetails(this.artistId);
+
+          this.artist = artist;
+          this.loading = false;
+
+          console.log({ artist: this.artist });
+        } catch (error) {
+          console.log(error);
+        }
+      }
     };
-  },
-  props: ["artistId", "image"],
-  components: { AlbumCard },
-  async created() {
-    const { getArtistDetails } = this.$artistQuery;
-
-    try {
-      const { data: artist } = await getArtistDetails(this.artistId);
-
-      this.artist = artist;
-      this.loading = false;
-
-      console.log({ artist: this.artist });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-};
 </script>
 
 <style>

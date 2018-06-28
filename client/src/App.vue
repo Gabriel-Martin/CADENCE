@@ -16,17 +16,17 @@
 </template>
 
 <script>
-import { NavDrawer, ToolBar } from "./components";
+  import { NavDrawer, ToolBar } from "./components";
 
-export default {
-  name: "App",
-  data() {
-    return {};
-  },
-  components: {
-    NavDrawer,
-    ToolBar
-  }
-};
+  export default {
+    name: "App",
+    data() {
+      return {};
+    },
+    components: {
+      NavDrawer,
+      ToolBar
+    }
+  };
 </script>
 

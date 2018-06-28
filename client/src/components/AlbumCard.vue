@@ -10,29 +10,29 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      album: {},
-      loading: true
-    };
-  },
-  props: ["albumId"],
-  async created() {
-    const { getAlbumDetails } = this.$artistQuery;
+  export default {
+    data() {
+      return {
+        album: {},
+        loading: true
+      };
+    },
+    props: ["albumId"],
+    async created() {
+      const { getAlbumDetails } = this.$artistQuery;
 
-    try {
-      const { data } = await getAlbumDetails(this.albumId);
+      try {
+        const { data } = await getAlbumDetails(this.albumId);
 
-      this.album = data;
-      this.loading = false;
+        this.album = data;
+        this.loading = false;
 
-      console.log(this.album);
-    } catch (error) {
-      console.log(error);
+        console.log(this.album);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
-};
+  };
 </script>
 
 <style>

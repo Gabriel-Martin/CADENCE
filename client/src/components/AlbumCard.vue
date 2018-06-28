@@ -1,17 +1,36 @@
 <template>
-    <v-flex>
-        <v-card light>
-            <v-card-media />
-            <v-card-title> {{ album.name }} </v-card-title>
-        </v-card>
+  <v-bottom-sheet-transition v-if="!loading" mode="out-in" appear>
+    <v-flex xs12 sm4>
+      <v-card light>
+        <v-card-media :src="album.images[3].url" height="200" />
+        <v-card-title> {{ album.name }} </v-card-title>
+      </v-card>
     </v-flex>
+  </v-bottom-sheet-transition>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      album: {},
+      loading: true
+    };
+  },
   props: ["albumId"],
-  created() {
-    console.log("ALBUM", this.albumId);
+  async created() {
+    const { getAlbumDetails } = this.$artistQuery;
+
+    try {
+      const { data } = await getAlbumDetails(this.albumId);
+
+      this.album = data;
+      this.loading = false;
+
+      console.log(this.album);
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 </script>

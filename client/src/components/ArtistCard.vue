@@ -38,8 +38,6 @@ export default {
 
       this.image = images[1].url;
       this.loading = false;
-
-      console.log(this.images);
     } catch (error) {
       console.log(error);
     }

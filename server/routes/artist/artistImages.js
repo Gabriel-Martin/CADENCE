@@ -3,7 +3,7 @@ module.exports = napster => app => {
     const { artistId } = req.params;
 
     try {
-      const { data } = await napster({ url: `/artists/${artistId}/images` });
+      const { data } = await napster({ url: `/${artistId}/images` });
 
       res.send(data);
     } catch (error) {

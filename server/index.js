@@ -1,9 +1,12 @@
 require("dotenv").config();
 const bodyParser = require("body-parser");
 
-const { getTopArtists } = require("./routes");
-const { getArtistImages } = require("./routes");
-const { getArtistDetails } = require("./routes");
+const {
+  getTopArtists,
+  getArtistImages,
+  getArtistDetails,
+  getAlbumDetails
+} = require("./routes");
 
 const app = require("express")();
 
@@ -21,5 +24,6 @@ app.use(function(req, res, next) {
 getTopArtists(app);
 getArtistImages(app);
 getArtistDetails(app);
+getAlbumDetails(app);
 
 app.listen(3000, "localhost");

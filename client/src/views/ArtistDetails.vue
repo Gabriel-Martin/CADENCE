@@ -1,39 +1,41 @@
 <template>
-    <v-container v-if="!loading" pa-4 grid-list-md>
-        <v-card height="100%">
-            <v-layout column>
-                <v-container grid-list-md>
-                    <v-layout>
-                        <v-flex>
-                            <v-card>
-                                <v-parallax :src="artist.image" height="400">
-                                    <v-layout column align-center justify-center>
-                                        <v-flex>
-                                            <v-card>
-                                                <h1 class="primary--text">Vuetify.js</h1>
-                                            </v-card>
-                                        </v-flex>
-                                    </v-layout>
-                                </v-parallax>
-                            </v-card>
-                        </v-flex>
-                    </v-layout>
-                </v-container>
+    <v-container class="main" v-if="!loading" pa-4 grid-list-md>
+        <v-layout column>
+            <v-flex>
+                <v-flex>
+                    <v-card class="image-header">
+                        <v-parallax :src="artist.images[3].url" height="400">
+                            <v-layout row justify-start align-end>
+                                <h1 class="display-3 primary--text text--darken-1"> {{ artist.name }} </h1>
+                            </v-layout>
+                        </v-parallax>
+                    </v-card>
+                </v-flex>
 
                 <v-flex>
                     <v-card>
                         <v-card-title primary-title>
                             <div class="title">Bio</div>
                         </v-card-title>
-                        <!-- <v-card-text class="subheading" v-html="" /> -->
+                        <v-card-text v-html="artist.bios[0].bio" />
                     </v-card>
                 </v-flex>
-            </v-layout>
-        </v-card>
+            </v-flex>
+
+            <v-flex>
+                <v-container grid-list-xs>
+                    <v-layout row wrap>
+                        <album-card v-for="({id}, index) in artist.albums" :key="index" v-bind="{ albumId: id }" />
+                    </v-layout>
+                </v-container>
+            </v-flex>
+        </v-layout>
     </v-container>
 </template>
 
 <script>
+import { AlbumCard } from "../components";
+
 export default {
   data() {
     return {
@@ -42,26 +44,20 @@ export default {
     };
   },
   props: ["artistId", "image"],
+  components: { AlbumCard },
   async created() {
-    const { getArtistDetails, getArtistImages } = this.$artistQuery;
+    const { getArtistDetails } = this.$artistQuery;
 
-    const [
-      { data: { artists: [artist] } },
-      { data: { images } }
-    ] = await Promise.all([
-      getArtistDetails(this.artistId),
-      getArtistImages(this.artistId)
-    ]);
+    try {
+      const { data: artist } = await getArtistDetails(this.artistId);
 
-    // const { data: { artists } } = await getArtistDetails(this.artistId);
-    // this.artist = artists[0];
+      this.artist = artist;
+      this.loading = false;
 
-    // const { data: { images } } = await artistId(this.artistId);
-    // this.artist.image = images[3].url;
-
-    this.loading = false;
-    console.log(artist);
-    console.log(images);
+      console.log(this.artist);
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 </script>

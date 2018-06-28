@@ -1,13 +1,23 @@
 // Import dependancies
 const axios = require("axios");
-const napster = axios.create({
+
+const artistQuery = axios.create({
   baseURL: process.env.NAPSTER_ADDRESS,
   headers: { apikey: process.env.NAPSTER_KEY }
 });
 
-// Build exports
-const getTopArtists = require("./topArtists")(napster);
-const getArtistImages = require("./artistImages")(napster);
-const getArtistDetails = require("./artistDetails")(napster);
+// TODO: Outsource artist queries to separate folder
 
-module.exports = { getTopArtists, getArtistImages, getArtistDetails };
+// Build exports
+const getTopArtists = require("./topArtists")(artistQuery);
+const getArtistImages = require("./artistImages")(artistQuery);
+const getArtistDetails = require("./artistDetails")(artistQuery);
+
+const { getAlbumDetails } = require("./album");
+
+module.exports = {
+  getTopArtists,
+  getArtistImages,
+  getArtistDetails,
+  getAlbumDetails
+};

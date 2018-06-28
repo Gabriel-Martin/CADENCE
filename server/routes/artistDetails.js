@@ -3,9 +3,22 @@ module.exports = artistQuery => app => {
     const { artistId } = req.params;
 
     try {
-      const { data } = await artistQuery({ url: `/artists/${artistId}` });
+      const [
+        { data: artistDetails },
+        { data: artistImages },
+        { data: artistAlbums }
+      ] = await Promise.all([
+        artistQuery({ url: `/artists/${artistId}` }),
+        artistQuery({ url: `/artists/${artistId}/images` }),
+        artistQuery({ url: `/artists/${artistId}/albums` })
+      ]);
 
-      res.send(data);
+      const artist = artistDetails.artists[0];
+      const images = artistImages.images;
+      const albums = artistAlbums.albums;
+
+      // res.send(albums);
+      res.send({ ...artist, images, albums });
     } catch (error) {
       console.log(error.response);
     }

@@ -4,9 +4,9 @@
     <tool-bar />
 
     <v-content>
-      <v-fade-transition mode="out-in">
+      <fade-in>
         <router-view/>
-      </v-fade-transition>
+      </fade-in>
     </v-content>
 
     <v-footer :fixed="true" app>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import { FadeIn } from "./containers";
   import { NavDrawer, ToolBar } from "./components";
 
   export default {
@@ -24,6 +25,7 @@
       return {};
     },
     components: {
+      FadeIn,
       NavDrawer,
       ToolBar
     }

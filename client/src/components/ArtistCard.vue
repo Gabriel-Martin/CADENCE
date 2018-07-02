@@ -1,48 +1,51 @@
 <template>
-  <v-fade-transition v-if="!loading" mode="out-in">
-    <v-layout fill-width>
-      <v-flex xs12>
-        <v-card>
-          <v-card-media :src="image" height="200px">
-          </v-card-media>
-          <v-card-title primary-title text-center>
-            <h3 class="headline mb-0 "> {{ name }} </h3>
-          </v-card-title>
-          <v-card-actions>
-            <v-btn flat color="primary" :to="detailsRoute">Explore</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-fade-transition>
+  <fade-in v-if="!loading">
+    <v-flex xs8 sm6 md4>
+      <v-card>
+        <v-card-media :src="image" height="200px">
+        </v-card-media>
+        <v-card-title primary-title text-center>
+          <h3 class="headline mb-0 "> {{ name }} </h3>
+        </v-card-title>
+        <v-divider dark></v-divider>
+        <v-card-actions>
+          <v-btn flat color="primary" :to="artistRoute">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+  </fade-in>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      image: "",
-      loading: true,
-      detailsRoute: {
-        name: "artist",
-        params: { artistId: this.id }
+  import { FadeIn } from "../containers";
+
+  export default {
+    data() {
+      return {
+        image: "",
+        loading: true
+      };
+    },
+    computed: {
+      artistRoute() {
+        return `/artist/${this.id}`;
       }
-    };
-  },
-  props: ["name", "id"],
-  async created() {
-    const { getArtistImages } = this.$artistQuery;
+    },
+    props: ["name", "id"],
+    components: { FadeIn },
+    async created() {
+      const { getArtistImages } = this.$artistQuery;
 
-    try {
-      const { data: { images } } = await getArtistImages(this.id);
+      try {
+        const { data: { images } } = await getArtistImages(this.id);
 
-      this.image = images[1].url;
-      this.loading = false;
-    } catch (error) {
-      console.log(error);
+        this.image = images[0].url;
+        this.loading = false;
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
-};
+  };
 </script>
 
 <style>

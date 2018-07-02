@@ -4,7 +4,8 @@ export {
   getArtistImages,
   getArtistDetails,
   getArtistsTopAlbums,
-  getArtistDiscography
+  getArtistDiscography,
+  getArtistEvents
 } from "./artist";
 
 export { getAlbumDetails } from "./album";

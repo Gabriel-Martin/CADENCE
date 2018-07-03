@@ -13,7 +13,7 @@ module.exports = artistQuery => app => {
         artistQuery({ url: `/${artistId}` }),
         artistQuery({ url: `/${artistId}/images` }),
         artistQuery({ url: `/${artistId}/albums/top?limit=5` }),
-        artistQuery({ url: `/${artistId}/tracks/top?limit=10` }),
+        artistQuery({ url: `/${artistId}/tracks/top?limit=5` }),
         artistQuery({ url: `/${artistId}/similar` })
       ]);
 

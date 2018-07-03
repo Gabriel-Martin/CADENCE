@@ -5,7 +5,10 @@ const {
   getTopArtists,
   getArtistImages,
   getArtistDetails,
-  getAlbumDetails
+  getAlbumDetails,
+  getArtistEvents,
+  getAllGenres,
+  getGenreDetails
 } = require("./routes");
 
 const app = require("express")();
@@ -25,5 +28,8 @@ getTopArtists(app);
 getArtistImages(app);
 getArtistDetails(app);
 getAlbumDetails(app);
+getArtistEvents(app);
+getAllGenres(app);
+getGenreDetails(app);
 
 app.listen(3000, "localhost");

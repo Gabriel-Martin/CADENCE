@@ -26,8 +26,6 @@
 
         this.album = data;
         this.loading = false;
-
-        console.log(this.album);
       } catch (error) {
         console.log(error);
       }

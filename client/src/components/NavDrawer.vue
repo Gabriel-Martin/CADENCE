@@ -1,9 +1,9 @@
 <template>
   <v-navigation-drawer :width="200" v-model="drawerModel" :mobile-break-point="900" clipped enable-resize-watcher fixed app>
     <v-list class="pt-0">
-      <v-list-tile v-for="(tab, index) in navButtons" :key="index" to="/">
+      <v-list-tile v-for="(tab, index) in navButtons" :key="index" :to="tab.to">
         <v-list-tile-action>
-          <v-icon>home</v-icon>
+          <v-icon>{{ tab.icon }}</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>{{ tab.label }}</v-list-tile-title>
@@ -20,10 +20,8 @@
     data() {
       return {
         navButtons: [
-          {
-            label: "Home",
-            to: "/"
-          }
+          { label: "Home", icon: "home", to: "/" },
+          { label: "Genres", icon: "queue_music", to: "/genres" }
         ]
       };
     },

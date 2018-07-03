@@ -1,14 +1,20 @@
 const {
   getTopArtists,
   getArtistImages,
-  getArtistDetails
+  getArtistDetails,
+  getArtistEvents
 } = require("./artist");
 
 const { getAlbumDetails } = require("./album");
+
+const { getAllGenres, getGenreDetails } = require("./genre");
 
 module.exports = {
   getTopArtists,
   getArtistImages,
   getArtistDetails,
-  getAlbumDetails
+  getAlbumDetails,
+  getArtistEvents,
+  getAllGenres,
+  getGenreDetails
 };

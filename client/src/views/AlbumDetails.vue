@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid fill-height grid-list-lg align-center justify-center>
+    <v-container>
         <fade-in>
             <loading v-if="loading" />
 
@@ -106,9 +106,7 @@
 
         this.album = data;
         this.tracks = data.tracks.map(track => ({ ...track, icon: "play_arrow" }));
-        console.log(this.tracks);
         this.loading = false;
-        console.log({ album: this.album });
       }
     };
 </script>

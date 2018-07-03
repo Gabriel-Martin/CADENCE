@@ -1,6 +1,13 @@
 import Vue from "vue";
 import Router from "vue-router";
-import { Home, ArtistDetails, AlbumDetails } from "./views";
+
+import {
+  Home,
+  ArtistDetails,
+  AlbumDetails,
+  Genres,
+  GenreDetails
+} from "./views";
 
 Vue.use(Router);
 
@@ -24,6 +31,18 @@ export default new Router({
       path: "/album/:albumId",
       component: AlbumDetails,
       props: true
+    },
+    {
+      name: "genres",
+      path: "/genres",
+      component: Genres,
+      props: true
+    },
+    {
+      name: "genre",
+      path: "/genre/:genreId",
+      component: GenreDetails,
+      props: true,
     }
   ]
 });

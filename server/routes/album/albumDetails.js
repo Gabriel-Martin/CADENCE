@@ -1,18 +1,23 @@
 module.exports = albumQuery => app => {
   app.get("/albums/:albumId", async (req, res) => {
     const { albumId } = req.params;
-    console.log("line 4", albumQuery);
+    console.log({ albumId });
     try {
-      const [album, albumImages] = await Promise.all([
+      const [details, albumImages, albumTracks, similar] = await Promise.all([
         albumQuery({ url: `/${albumId}` }),
-        albumQuery({ url: `/${albumId}/images` })
+        albumQuery({ url: `/${albumId}/images` }),
+        albumQuery({ url: `/${albumId}/tracks` }),
+        albumQuery({ url: `/${albumId}/similar` })
       ]);
 
-      const albumDetails = album.data.albums[0];
-      const images = albumImages.data.images;
+      const album = details.data.albums[0];
+      const { images } = albumImages.data;
+      const similarAlbums = similar.data.albums;
+      const { tracks } = albumTracks.data;
 
-      console.log("images", images);
-      res.send({ ...albumDetails, images });
+      const data = { ...album, images, similarAlbums, tracks };
+
+      res.send(data);
     } catch (error) {
       console.log(error.response);
     }

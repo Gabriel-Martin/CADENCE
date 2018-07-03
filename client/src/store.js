@@ -12,7 +12,6 @@ export default new Vuex.Store({
       this.state.drawer = !this.state.drawer;
     },
     setDrawerStatus(v) {
-      console.log(v);
       this.state.drawer = v;
     },
     toggleMiniVariant() {

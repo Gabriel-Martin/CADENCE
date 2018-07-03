@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const albumQuery = axios.create({
-  baseURL: `${process.env.NAPSTER_ADDRESS}/albums`,
+  baseURL: `${process.env.NAPSTER_ENDPOINT}/albums`,
   headers: { apikey: process.env.NAPSTER_KEY }
 });
 

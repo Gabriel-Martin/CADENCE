@@ -68,12 +68,12 @@
       },
       async created() {
         const { getArtistDetails, getArtistEvents } = this.$artistQuery;
+        console.log(this);
 
         try {
           const { data: artist } = await getArtistDetails(this.artistId);
           const { data: events } = await getArtistEvents(artist.name);
 
-          console.log({ events: events.data });
           this.artist = artist;
           this.events = events.data;
           this.loading = false;

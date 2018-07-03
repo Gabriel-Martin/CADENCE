@@ -6,7 +6,7 @@
             <v-layout v-else column key="content">
                 <!-- HEADER -->
                 <v-flex>
-                    <v-parallax :src="artist.images[3].url">
+                    <v-parallax :src="artist.images[3] && artist.images[3].url">
                         <v-layout pa-2 row justify-start align-end>
                             <h1 class="display-3 primary--text text--darken-1"> {{ artist.name }} </h1>
                         </v-layout>
@@ -74,6 +74,7 @@
           const { data: artist } = await getArtistDetails(this.artistId);
           const { data: events } = await getArtistEvents(artist.name);
 
+          console.log({ artist });
           this.artist = artist;
           this.events = events.data;
           this.loading = false;

@@ -10,7 +10,7 @@
                             <v-flex>
                                 <v-card-media :src="album.images[2].url" height="200" />
                             </v-flex>
-
+                            <!-- ALBUM INFO -->
                             <v-flex sm8>
                                 <v-card-text class="pa-0">
                                     <div class="title">Album: {{ album.name }}</div>
@@ -22,30 +22,30 @@
                         </v-layout>
                     </v-card>
                 </v-flex>
-
+                <!-- TRACKS LIST -->
                 <v-flex>
                     <v-card class="pa-3">
                         <v-list>
                             <v-list-tile>
                                 <v-layout row>
-                                    <v-flex class="text-xs-center" sm4>Track</v-flex>
-                                    <v-flex class="text-xs-center hidden-xs-only" sm4>Length</v-flex>
-                                    <v-flex class="text-xs-center" sm4>Preview</v-flex>
+                                    <v-flex xs6 sm4 class="text-xs-center">Track</v-flex>
+                                    <v-flex sm4 class="text-xs-center hidden-xs-only">Length</v-flex>
+                                    <v-flex xs6 sm4 class="text-xs-center">Preview</v-flex>
                                 </v-layout>
                             </v-list-tile>
                             <v-divider class="primary" />
                             <template v-for="(track, index) in tracks">
                                 <v-list-tile :key="index">
                                     <v-layout row align-center justify-center>
-                                        <v-flex sm4>
+                                        <v-flex xs6 sm4>
                                             <v-list-tile-sub-title>{{ index + 1 }}: {{ track.name }}</v-list-tile-sub-title>
                                         </v-flex>
 
-                                        <v-flex sm4 class="text-xs-center hidden-xs-only">
+                                        <v-flex xs6 sm4 class="text-xs-center hidden-xs-only">
                                             <v-list-tile-sub-title>{{ track.playbackSeconds }}s</v-list-tile-sub-title>
                                         </v-flex>
 
-                                        <v-flex sm4 class="text-xs-center">
+                                        <v-flex xs6 sm4 class="text-xs-center">
                                             <v-btn icon @click="playAudio({track, index})">
                                                 <v-icon>{{ track.icon }}</v-icon>
                                             </v-btn>

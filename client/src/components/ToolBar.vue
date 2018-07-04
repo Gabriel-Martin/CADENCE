@@ -1,8 +1,7 @@
 <template>
   <v-toolbar app :clipped-left="true">
     <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
-    <v-toolbar-title v-text="title"></v-toolbar-title>
-    <v-spacer></v-spacer>
+    <v-toolbar-title class="hidden-xs-only" v-text="title"></v-toolbar-title>
     <v-spacer></v-spacer>
     <v-form @submit.prevent="handleSubmit">
       <v-text-field v-bind="searchInput" v-model="query"></v-text-field>

@@ -1,7 +1,7 @@
 module.exports = albumQuery => app => {
   app.get("/albums/:albumId", async (req, res) => {
     const { albumId } = req.params;
-    console.log({ albumId });
+
     try {
       const [details, albumImages, albumTracks, similar] = await Promise.all([
         albumQuery({ url: `/${albumId}` }),
@@ -17,7 +17,7 @@ module.exports = albumQuery => app => {
 
       const data = { ...album, images, similarAlbums, tracks };
 
-      res.send(data);
+      res.json(data);
     } catch (error) {
       console.log(error.response);
     }

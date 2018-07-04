@@ -9,6 +9,8 @@ const { getAlbumDetails } = require("./album");
 
 const { getAllGenres, getGenreDetails } = require("./genre");
 
+const { getSearchResults } = require("./search");
+
 module.exports = {
   getTopArtists,
   getArtistImages,
@@ -16,5 +18,6 @@ module.exports = {
   getAlbumDetails,
   getArtistEvents,
   getAllGenres,
-  getGenreDetails
+  getGenreDetails,
+  getSearchResults
 };

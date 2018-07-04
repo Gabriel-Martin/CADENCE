@@ -6,7 +6,8 @@ import {
   ArtistDetails,
   AlbumDetails,
   Genres,
-  GenreDetails
+  GenreDetails,
+  SearchResults
 } from "./views";
 
 Vue.use(Router);
@@ -42,7 +43,13 @@ export default new Router({
       name: "genre",
       path: "/genre/:genreId",
       component: GenreDetails,
-      props: true,
+      props: true
+    },
+    {
+      name: "search",
+      path: "/search",
+      component: SearchResults,
+      props: true
     }
   ]
 });

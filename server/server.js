@@ -1,5 +1,7 @@
 require("dotenv").config();
 const bodyParser = require("body-parser");
+const app = require("express")();
+const server = require("http").Server(app);
 
 const {
   getTopArtists,
@@ -8,10 +10,9 @@ const {
   getAlbumDetails,
   getArtistEvents,
   getAllGenres,
-  getGenreDetails
+  getGenreDetails,
+  getSearchResults
 } = require("./routes");
-
-const app = require("express")();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -31,5 +32,10 @@ getAlbumDetails(app);
 getArtistEvents(app);
 getAllGenres(app);
 getGenreDetails(app);
+getSearchResults(app);
 
-app.listen(3000, "localhost");
+app.listen(3000, () => {
+  console.log(`Server running at http://localhost:3000`);
+});
+
+module.exports = { app };

@@ -7,8 +7,7 @@ module.exports = eventsQuery => app => {
         url: `artists/${artistName}/events`
       });
 
-      console.log({ data });
-      res.send({ data });
+      res.json({ data });
     } catch (error) {
       console.log(error.response);
     }

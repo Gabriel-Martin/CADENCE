@@ -5,9 +5,9 @@
         <v-card-title class="title">Top Albums</v-card-title>
         <v-divider class="primary" />
         <v-list two-line>
-          <v-list-tile v-for="(album, index) in topAlbumsDetails" :key="index" :to="`/album/${album.id}`">
+          <v-list-tile v-for="(album, index) in topAlbumsDetails" :key="index" @click="goToAlbum(album.id)">
             <v-list-tile-avatar>
-              <img class="image" :src="album.images[2].url" alt="album cover">
+              <img class="image" :src="album.images[2] && album.images[2].url" alt="album cover">
             </v-list-tile-avatar>
             <v-list-tile-content>
               <v-list-tile-title>{{ album.name }}</v-list-tile-title>
@@ -39,6 +39,9 @@
       },
       isExplicit(control) {
         return control ? "YES" : "NO";
+      },
+      goToAlbum(albumId) {
+        this.$router.push({ name: "album", params: { albumId } });
       }
     },
     async created() {

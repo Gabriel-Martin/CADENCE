@@ -1,4 +1,11 @@
 {
+  "name": "cadence-api",
+  "alias": "cadence",
+  "version": "1.0.0",
+  "description": "CADENCE API",
+  "main": "index.js",
+  "author": "Gabriel Martin",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
@@ -9,12 +16,11 @@
     "nodemon": "^1.17.5"
   },
   "scripts": {
-    "serve": "nodemon ./index.js"
+    "serve": "nodemon ./server.js",
+    "now-start": "node ./server.js",
+    "deploy": "now --dotenv --public && now alias"
   },
-  "name": "server",
-  "version": "1.0.0",
-  "description": "CADENCE API",
-  "main": "index.js",
-  "author": "Gabriel Martin",
-  "license": "MIT"
+  "now": {
+    "alias": "cadence"
+  }
 }

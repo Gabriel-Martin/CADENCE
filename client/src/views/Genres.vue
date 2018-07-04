@@ -11,7 +11,7 @@
 
                 <v-flex>
                     <v-list class="pa-0">
-                        <v-list-tile v-for="(genre, index) in genres" :key="index" :to="`/genre/${genre.id}`">
+                        <v-list-tile v-for="(genre, index) in genres" :key="index" @click="goToGenre(genre.id)">
                             <v-list-tile-content>
                                 <v-list-tile-title class="subheadings">{{ genre.name }}</v-list-tile-title>
                             </v-list-tile-content>
@@ -35,13 +35,17 @@
         };
       },
       components: { Loading, FadeIn },
+      methods: {
+        goToGenre(genreId) {
+          this.$router.push({ name: "genre", params: { genreId } });
+        }
+      },
       async created() {
         const { getAllGenres } = this.$artistQuery;
         const { data: { genres } } = await getAllGenres();
 
         this.genres = genres;
         this.loading = false;
-        console.log(this.genres);
       }
     };
 </script>

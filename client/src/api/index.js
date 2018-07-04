@@ -11,3 +11,5 @@ export {
 export { getAlbumDetails } from "./album";
 
 export { getAllGenres, getGenreDetails } from "./genre";
+
+export { getSearchResults } from "./search";

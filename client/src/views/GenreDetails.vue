@@ -90,12 +90,6 @@
         this.genre = genre;
         this.topArtists = topArtists;
         this.topAlbums = topAlbums;
-
-        console.log({
-          genre: this.genre,
-          topArtists: this.topArtists,
-          topAlbums: this.topAlbums
-        });
         this.loading = false;
       } catch (error) {
         console.log(error);

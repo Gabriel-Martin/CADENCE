@@ -23,7 +23,7 @@ module.exports = artistQuery => app => {
       const topTracks = artistTopTracks.tracks;
       const similarArtists = similar.artists;
 
-      res.send({ ...artist, images, topAlbums, topTracks, similarArtists });
+      res.json({ ...artist, images, topAlbums, topTracks, similarArtists });
     } catch (error) {
       console.log(error.response);
     }

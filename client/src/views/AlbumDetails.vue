@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container fluid fill-height grid-list-lg>
         <fade-in>
             <loading v-if="loading" />
 
@@ -7,7 +7,7 @@
                 <v-flex>
                     <v-card class="pa-3">
                         <v-layout v-bind="breakpoint">
-                            <v-flex auto>
+                            <v-flex>
                                 <v-card-media :src="album.images[2].url" height="200" />
                             </v-flex>
 

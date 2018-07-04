@@ -20,7 +20,7 @@
         query: "",
         searchInput: {
           "single-line": true,
-          label: "Search Artist",
+          label: "Search",
           "hide-details": true,
           "prepend-icon": "search"
         }
@@ -31,7 +31,10 @@
     },
     methods: {
       ...mapMutations(["toggleDrawer", "toggleMiniVariant"]),
-      handleSubmit() {}
+      handleSubmit() {
+        this.$router.push({ name: "search", query: { query: this.query } });
+        this.query = "";
+      }
     }
   };
 </script>

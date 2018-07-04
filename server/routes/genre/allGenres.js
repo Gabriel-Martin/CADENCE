@@ -3,7 +3,7 @@ module.exports = napster => app => {
     try {
       const { data } = await napster();
 
-      res.send(data);
+      res.json(data);
     } catch (error) {
       console.log(error.response);
     }

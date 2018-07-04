@@ -3,9 +3,9 @@ module.exports = napster => app => {
     try {
       const { data } = await napster({ url: "/top?limit=21" });
 
-      res.send(data);
+      res.json(data);
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   });
 };

@@ -9,7 +9,7 @@
         </v-card-title>
         <v-divider dark></v-divider>
         <v-card-actions>
-          <v-btn flat color="primary" :to="artistRoute">Explore</v-btn>
+          <v-btn flat color="primary" @click="goToArtist(id)">Explore</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -26,9 +26,9 @@
         loading: true
       };
     },
-    computed: {
-      artistRoute() {
-        return `/artist/${this.id}`;
+    methods: {
+      goToArtist(artistId) {
+        this.$router.push({ name: "artist", params: { artistId } });
       }
     },
     props: ["name", "id"],

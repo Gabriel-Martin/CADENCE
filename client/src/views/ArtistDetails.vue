@@ -3,7 +3,7 @@
         <fade-in>
             <loading v-if="loading" key="loading" />
 
-            <v-layout v-else column key="content">
+            <v-layout fill-height v-else column key="content">
                 <!-- HEADER -->
                 <v-flex>
                     <v-parallax :src="artist.images[3] && artist.images[3].url">
@@ -17,7 +17,7 @@
                     <v-card>
                         <v-card-title primary-title class="title">Bio</v-card-title>
                         <v-divider class="primary"></v-divider>
-                        <v-card-text v-html="artist.bios[0].bio" />
+                        <v-card-text v-html="artist.bios && artist.bios[0].bio" />
                     </v-card>
                 </v-flex>
                 <!-- TOP MUSIC -->
@@ -68,13 +68,11 @@
       },
       async created() {
         const { getArtistDetails, getArtistEvents } = this.$artistQuery;
-        console.log(this);
 
         try {
           const { data: artist } = await getArtistDetails(this.artistId);
           const { data: events } = await getArtistEvents(artist.name);
 
-          console.log({ artist });
           this.artist = artist;
           this.events = events.data;
           this.loading = false;

@@ -5,7 +5,7 @@ module.exports = napster => app => {
     try {
       const { data } = await napster({ url: `/${artistId}/images` });
 
-      res.send(data);
+      res.json(data);
     } catch (error) {
       console.log(error.response);
     }

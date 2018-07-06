@@ -6,20 +6,22 @@
             <v-layout v-else column>
                 <v-flex>
                     <v-card class="pa-3">
-                        <v-layout v-bind="breakpoint">
-                            <v-flex>
-                                <v-card-media :src="album.images[2].url" height="200" />
-                            </v-flex>
-                            <!-- ALBUM INFO -->
-                            <v-flex sm8>
-                                <v-card-text class="pa-0">
-                                    <div class="title">Album: {{ album.name }}</div>
-                                    <div class="subheading">Label: {{ album.label }}</div>
-                                    <div class="subheading">Released: {{ new Date(album.released).toDateString() }}</div>
-                                    <div class="subheading">Explicit: {{ album.isExplicit ? 'YES' : 'NO' }}</div>
-                                </v-card-text>
-                            </v-flex>
-                        </v-layout>
+                        <v-container fluid grid-list-lg>
+                            <v-layout v-bind="breakpoint">
+                                <v-flex sm4>
+                                    <v-card-media contain :src="album.images[2].url" :height="300" />
+                                </v-flex>
+                                <!-- ALBUM INFO -->
+                                <v-flex class="text--center" sm8>
+                                    <v-card-text class="pa-0">
+                                        <div class="title">Album: {{ album.name }}</div>
+                                        <div class="subheading">Label: {{ album.label }}</div>
+                                        <div class="subheading">Released: {{ new Date(album.released).toDateString() }}</div>
+                                        <div class="subheading">Explicit: {{ album.isExplicit ? 'YES' : 'NO' }}</div>
+                                    </v-card-text>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
                     </v-card>
                 </v-flex>
                 <!-- TRACKS LIST -->

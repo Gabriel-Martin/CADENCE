@@ -4,7 +4,7 @@
     <v-toolbar-title class="hidden-xs-only" v-text="title"></v-toolbar-title>
     <v-spacer></v-spacer>
     <v-form @submit.prevent="handleSubmit">
-      <v-text-field v-bind="searchInput" v-model="query"></v-text-field>
+      <v-text-field v-bind="searchInput" v-model="query" ref="searchInput"></v-text-field>
     </v-form>
   </v-toolbar>
 </template>
@@ -31,6 +31,7 @@
     methods: {
       ...mapMutations(["toggleDrawer", "toggleMiniVariant"]),
       handleSubmit() {
+        this.$refs.searchInput.blur();
         this.$router.push({ name: "search", query: { query: this.query } });
         this.query = "";
       }
